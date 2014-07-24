@@ -33,6 +33,14 @@ end
   end
 end
 
+template '/etc/collectd.conf' do
+  source 'collectd.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '644'
+  notifies :restart, 'service[collectd]'
+end
+
 %w(collectd collection thresholds).each do |file|
   template "/etc/collectd/#{file}.conf" do
     source "#{file}.conf.erb"
