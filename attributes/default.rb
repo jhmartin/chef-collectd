@@ -22,7 +22,7 @@ default[:collectd][:plugin_dir] = '/usr/lib/collectd'
 default[:collectd][:types_db] = ['/usr/share/collectd/types.db']
 default[:collectd][:interval] = 10
 default[:collectd][:read_threads] = 5
-default[:collectd][:pkg_name] = 'collectd-core'
+default[:collectd][:pkg_name] = 'collectd'
 
 default[:collectd][:collectd_web][:path] = '/srv/collectd_web'
 default[:collectd][:collectd_web][:hostname] = 'collectd'
