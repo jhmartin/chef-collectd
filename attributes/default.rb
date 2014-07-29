@@ -18,11 +18,22 @@
 #
 
 default[:collectd][:base_dir] = '/var/lib/collectd'
-default[:collectd][:plugin_dir] = kernel['machine'] =~ /x86_64/ ? '/usr/lib64/collectd' : '/usr/lib/collectd'
+
+if platform_family?("rhel")
+  default[:collectd][:plugin_dir] = kernel['machine'] =~ /x86_64/ ? '/usr/lib64/collectd' : '/usr/lib/collectd'
+else
+  default[:collectd][:plugin_dir] = '/usr/lib/collectd'
+end
+
 default[:collectd][:types_db] = ['/usr/share/collectd/types.db']
 default[:collectd][:interval] = 10
 default[:collectd][:read_threads] = 5
-default[:collectd][:pkg_name] = 'collectd-core'
+
+if platform_family?("rhel")
+  default[:collectd][:pkg_name] = 'collectd'
+else
+  default[:collectd][:pkg_name] = 'collectd-core'
+end
 
 default[:collectd][:collectd_web][:path] = '/srv/collectd_web'
 default[:collectd][:collectd_web][:hostname] = 'collectd'
