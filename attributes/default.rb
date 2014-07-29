@@ -18,7 +18,7 @@
 #
 
 default[:collectd][:base_dir] = "/var/lib/collectd"
-default[:collectd][:plugin_dir] = "/usr/lib/collectd"
+default[:collectd][:plugin_dir] = kernel['machine'] =~ /x86_64/ ? '/usr/lib64/collectd' : '/usr/lib/collectd'
 default[:collectd][:types_db] = ["/usr/share/collectd/types.db"]
 default[:collectd][:interval] = 10
 default[:collectd][:read_threads] = 5
